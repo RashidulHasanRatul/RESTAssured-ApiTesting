@@ -2,7 +2,7 @@ package com.rest.AutomateGETRequest;
 
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
-
+import static org.hamcrest.Matchers.*;
 public class Assert_Status_Code {
 
     @Test
@@ -18,7 +18,8 @@ public class Assert_Status_Code {
                              .get("/api/users?page=2")
                 .then()
                            .assertThat()
-                             .statusCode(200)
+                             .statusCode(200).
+                body("Workspace.name",hasItems(""))
                             .log().all();
 
     }
